@@ -21,3 +21,8 @@ The design was verified in **Icarus Verilog** and visualized using **EPWave** un
 ### Key Observations
 1. **At t = 33 ns**: The `sel` signal toggles from `0` to `1` mid-pulse. `clk_out` completes its current low phase without early truncation.
 2. **Deterministic Idle Phase**: A safe, low idle state is maintained during clock handover, guaranteeing zero runt pulses or duty cycle violations.
+
+## Technical Interview Talking Points
+- **Design Problem**: Standard multiplexers cause runt pulses/glitches during dynamic clock switching, leading to metastability in flip-flops.
+- **Hardware Architecture**: Utilized dual negative-edge D-flip-flops with cross-coupled feedback to ensure the active clock deasserts to LOW before the incoming clock is enabled.
+- **Verification**: Verified zero runt-pulse transitions across asynchronous 100 MHz and 62.5 MHz domains using Icarus Verilog and EPWave.
